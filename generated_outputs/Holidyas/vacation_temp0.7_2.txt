@@ -1,0 +1,177 @@
+Q: We will ask you a series of questions on Decision Model and Notation tables. Each question starts with "Q:", and each response should start with "A:". Below is a decision description, between quotation marks.  What does this description decide?
+
+"""Every employee receives at least 22 days of vacation. Additional days are provided according to the following criteria: Only employees who are younger than 18 or at least 60 years old, or employees with at least 30 years of service will receive 5 extra days. Employees with at least 30 years of service and also employees of age 60 or more, receive 3 extra days, on top of possible additional days already given.
+ If an employee has at least 15 but less than 30 years of service, 2 extra days are given. These 2 days are also provided for employees of age 45 or more. These 2 extra days can not be combined with the extra 5 days.
+"""
+
+
+
+A: The decision description determines the number of vacation days an employee is entitled to receive based on their age and years of service. It establishes a base of 22 vacation days, with additional days awarded under specific criteria related to age (younger than 18 or at least 60) and years of service (at least 30 years or between 15 and 30 years). The rules specify how the additional days are calculated and which conditions apply, ensuring that certain employees receive extra vacation days based on their situation.
+
+Q: How many holidays does a 32 year old receive if they have 6 years of service?
+
+A: A 32-year-old employee with 6 years of service receives the base of 22 vacation days. Since they do not meet the criteria for any additional days (they are neither younger than 18 nor at least 60 years old, and they have less than 15 years of service), they do not receive any extra days. Therefore, they receive a total of 22 vacation days.
+
+Q: What are the variables that influence this decision?
+
+A: The variables that influence this decision are:
+
+1. **Age of the employee**: Specifically, whether the employee is younger than 18, at least 60 years old, or falls within other specified age ranges (e.g., 45 or older).
+2. **Years of service**: This includes the total number of years an employee has worked for the organization, with specific thresholds (e.g., at least 30 years, between 15 and 30 years) affecting the calculation of additional vacation days.
+3. **Base vacation days**: The standard number of vacation days (22) that every employee receives before any additional days are considered.
+4. **Combination rules**: The rules regarding whether additional days can be combined based on the criteria met by the employee.
+
+Q: For each input and output, give me an overview of their data type and their possible values.
+
+A: Here's an overview of the input and output data types along with their possible values:
+
+### Inputs
+
+1. **Age of the Employee**
+   - **Data Type**: Integer
+   - **Possible Values**: Any positive integer, typically representing the age in years (e.g., 0 to 100+).
+
+2. **Years of Service**
+   - **Data Type**: Integer
+   - **Possible Values**: Non-negative integers, representing the number of years the employee has worked at the organization (e.g., 0, 1, 2, ..., 30+).
+
+### Outputs
+
+1. **Total Vacation Days**
+   - **Data Type**: Integer
+   - **Possible Values**: 
+     - Minimum value: 22 (base days for all employees).
+     - Maximum value: This can vary based on the combinations of additional days awarded. For example:
+       - Employees under 18 or 60+ with at least 30 years of service: 22 + 5 + 3 = 30 days.
+       - Employees with at least 15 but less than 30 years of service or aged 45 or older may receive 2 additional days.
+       - Total vacation days can range from 22 (minimum) to a maximum depending on the combination of eligibility for additional days.
+
+### Summary
+- **Inputs**: Age (integer), Years of Service (integer)
+- **Output**: Total Vacation Days (integer, minimum 22, varies based on criteria met)
+
+Q: What are the relevant values of the numerical variables?
+
+A: The relevant values of the numerical variables in the decision description are as follows:
+
+### 1. **Age of the Employee**
+   - Relevant Age Values:
+     - Less than 18 (e.g., 0-17)
+     - Between 18 and 44 (no additional days based on age)
+     - 45 or older (receives 2 additional days if years of service criteria met)
+     - At least 60 (receives 5 extra days if years of service criteria met)
+
+### 2. **Years of Service**
+   - Relevant Years of Service Values:
+     - Less than 15 (no additional days)
+     - Between 15 and 29 (receives 2 additional days)
+     - At least 30 (receives 5 extra days, and potential for 3 more if also aged 60 or older)
+
+### Summary of Relevant Values
+- **Age**: Any positive integer, but specifically notable thresholds are under 18, 45+, and 60+.
+- **Years of Service**: Non-negative integers, specifically notable thresholds are below 15, between 15 and 29, and 30 or more.
+
+These values determine the eligibility for additional vacation days based on the criteria outlined in the decision description.
+
+Q: Could you generate a DMN decision table for this description? Make sure the table can be read horizontally: the column headers contain the inputs and output.
+
+A: Below is a Decision Model and Notation (DMN) decision table that summarizes the vacation day allocation based on the employee's age and years of service. The table is structured horizontally with column headers for the inputs and output.
+
+| Age of Employee | Years of Service | Total Vacation Days |
+|------------------|------------------|---------------------|
+| < 18             | Any              | 22 + 5 = 27         |
+| 18 - 44          | < 15             | 22                  |
+| 18 - 44          | 15 - 29          | 22 + 2 = 24         |
+| 18 - 44          | ≥ 30             | 22                  |
+| 45 - 59          | < 15             | 22                  |
+| 45 - 59          | 15 - 29          | 22 + 2 = 24         |
+| 45 - 59          | ≥ 30             | 22 + 3 = 25         |
+| ≥ 60             | < 30             | 22 + 5 = 27         |
+| ≥ 60             | ≥ 30             | 22 + 5 + 3 = 30     |
+
+### Notes:
+- The first column specifies the age ranges.
+- The second column specifies the years of service ranges.
+- The third column indicates the total vacation days calculated based on the conditions provided in the decision description.
+- Employees aged 60 or older who have at least 30 years of service receive the maximum vacation days due to both age and service criteria being met.
+
+Q: Make the rules mutually exclusive.
+
+A: To ensure the rules in the DMN decision table are mutually exclusive, we need to adjust the ranges and clearly define the conditions so that no single employee fits more than one rule set. Below is the revised DMN decision table with mutually exclusive rules:
+
+| Age of Employee | Years of Service | Total Vacation Days |
+|------------------|------------------|---------------------|
+| < 18             | Any              | 22 + 5 = 27         |
+| 18 - 44          | < 15             | 22                  |
+| 18 - 44          | 15 - 29          | 22 + 2 = 24         |
+| 45 - 59          | < 15             | 22                  |
+| 45 - 59          | 15 - 29          | 22 + 2 = 24         |
+| 45 - 59          | ≥ 30             | 22 + 3 = 25         |
+| ≥ 60             | < 30             | 22 + 5 = 27         |
+| ≥ 60             | ≥ 30             | 22 + 5 + 3 = 30     |
+
+### Adjustments Made:
+1. **Age Ranges**: Each age category has been defined in such a way that they do not overlap. For example, "18 - 44" and "45 - 59" are distinct ranges.
+2. **Years of Service**: The years of service categories remain the same but are now clearly defined so that each combination (age range and years of service) results in a unique total vacation days value.
+
+### Summary of the Rules:
+- Employees under 18 receive 27 total vacation days.
+- Employees aged 18 to 44 will receive additional days based only on their years of service.
+- Employees aged 45 to 59 also receive additional days based on their years of service.
+- Employees aged 60 or older have distinct rules for both service categories, allowing for maximum benefits based on their eligibility.
+
+This structure ensures that there are no overlaps in the rules, making them mutually exclusive.
+
+Q: Is this table complete? (I.e., is there an applicable rule for each set of inputs?) If it is incomplete, can you find an example for which no rule would be applicable?
+
+A: The provided DMN decision table is not complete because there are still potential input combinations for which no rule is applicable. Here’s a look at the gaps:
+
+### Potential Missing Combinations
+
+1. **Employees aged 18-44 with exactly 30 years of service**: 
+   - There is currently no rule that covers employees who are in this age range and have exactly 30 years of service. The existing rules only cover those with less than 15 years, between 15 and 29 years, or greater than or equal to 30 years in the age groups defined.
+
+2. **Employees aged 45-59 with exactly 30 years of service**:
+   - Similar to the above, employees aged 45-59 who have exactly 30 years of service also lack coverage in the current rules.
+
+### Example of Inputs with No Applicable Rule
+- **Example Input**: An employee who is 30 years old (which falls into the 18-44 age range) and has exactly 30 years of service.
+- **Example Input**: An employee who is 55 years old (which falls into the 45-59 age range) and has exactly 30 years of service.
+
+### Summary of Incomplete Rules
+To address these gaps, we would need to add additional rules to account for:
+
+- Employees aged 18-44 with exactly 30 years of service.
+- Employees aged 45-59 with exactly 30 years of service.
+
+### Revised DMN Decision Table (Including Missing Rules)
+
+| Age of Employee | Years of Service | Total Vacation Days |
+|------------------|------------------|---------------------|
+| < 18             | Any              | 22 + 5 = 27         |
+| 18 - 44          | < 15             | 22                  |
+| 18 - 44          | 15 - 29          | 22 + 2 = 24         |
+| 18 - 44          | = 30             | 22                  |  (New Rule Added)
+| 45 - 59          | < 15             | 22                  |
+| 45 - 59          | 15 - 29          | 22 + 2 = 24         |
+| 45 - 59          | = 30             | 22 + 3 = 25         |  (New Rule Added)
+| 45 - 59          | ≥ 30             | 22 + 3 = 25         |
+| ≥ 60             | < 30             | 22 + 5 = 27         |
+| ≥ 60             | ≥ 30             | 22 + 5 + 3 = 30     |
+
+In the revised table, new rules have been added to cover the previously missing combinations for employees aged 18-44 with exactly 30 years of service and employees aged 45-59 with exactly 30 years of service. This ensures that the table is now complete and all input combinations have an applicable rule.
+
+Q: According to your table, answer the following question.  How many holidays does a 64 year old receive if they have 32 years of service?
+
+A: According to the decision table, a 64-year-old employee with 32 years of service falls into the category of employees aged 60 or older with at least 30 years of service. 
+
+Based on the rules:
+- Base vacation days: 22
+- Additional days for being 60 or older: 5
+- Additional days for having at least 30 years of service: 3
+
+Total vacation days calculation:
+22 (base) + 5 (age) + 3 (service) = 30 vacation days.
+
+Therefore, a 64-year-old employee with 32 years of service receives a total of 30 vacation days.
+

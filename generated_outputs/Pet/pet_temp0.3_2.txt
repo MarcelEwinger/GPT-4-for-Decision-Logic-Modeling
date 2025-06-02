@@ -1,0 +1,180 @@
+Q: We will ask you a series of questions on Decision Model and Notation tables. Each question starts with "Q:", and each response should start with "A:". Below is a decision description, between quotation marks.  What does this description decide?
+
+"""A couple is planning their future and is determining under which conditions to adopt a certain pet. Together they decided that if someone has allergies and they have no time to take care of a pet, then no pet is adopted. The couple also decided to not take in an animal if they don't have kids. However, if they have an average or a large amount of time available, then if they have allergies they want to take in a fish. The couple decides that they also want a fish if they have kids and no allergies, even if they don't have a lot of time available. The couple decides to take in a cat or a dog only if no one has allergies. A dog is taken in if they have a garden, kids and a lot of time. The dog is also adopted if they have a garden, no kids and have normal or a lot oflarge amount of time to spare. In all the remaining cases, the couple decides they want to have a cat.
+"""
+
+
+
+A: The description decides the conditions under which the couple will adopt a pet, specifying different scenarios for adopting a fish, dog, or cat based on factors such as allergies, availability of time, presence of children, and having a garden.
+
+Q: What pet should a couple with allergies choose if they have a lot of time to take care of it?
+
+A: If the couple has allergies and a lot of time to take care of a pet, they should choose to adopt a fish.
+
+Q: What are the variables that influence this decision?
+
+A: The variables that influence the couple's decision on adopting a pet include:
+
+1. Presence of allergies (yes or no)
+2. Amount of time available (none, average, normal, or a lot)
+3. Presence of children (yes or no)
+4. Availability of a garden (yes or no)
+
+Q: For each input and output, give me an overview of their data type and their possible values.
+
+A: Here is an overview of the input and output variables, their data types, and possible values:
+
+### Input Variables
+
+1. **Presence of Allergies**
+   - **Data Type:** Boolean (Yes/No)
+   - **Possible Values:** 
+     - Yes
+     - No
+
+2. **Amount of Time Available**
+   - **Data Type:** Categorical
+   - **Possible Values:** 
+     - None
+     - Average
+     - Normal
+     - A lot
+
+3. **Presence of Children**
+   - **Data Type:** Boolean (Yes/No)
+   - **Possible Values:** 
+     - Yes
+     - No
+
+4. **Availability of a Garden**
+   - **Data Type:** Boolean (Yes/No)
+   - **Possible Values:** 
+     - Yes
+     - No
+
+### Output Variables
+
+1. **Pet Adoption Decision**
+   - **Data Type:** Categorical
+   - **Possible Values:** 
+     - No pet
+     - Fish
+     - Dog
+     - Cat
+
+This structure outlines the key factors influencing the couple's decision-making process regarding pet adoption.
+
+Q: What are the relevant values of the numerical variables?
+
+A: In the context of the decision model described, there are no numerical variables present. All input variables are categorical or boolean in nature, focusing on qualitative aspects such as allergies, time availability, presence of children, and garden availability. Therefore, there are no relevant values for numerical variables since none exist in this decision-making scenario.
+
+Q: Could you generate a DMN decision table for this description? Make sure the table can be read horizontally: the column headers contain the inputs and output.
+
+A: Below is a DMN decision table that represents the couple's decision-making process regarding pet adoption based on the provided description. The table is structured horizontally with column headers for inputs and output.
+
+| Presence of Allergies | Amount of Time Available | Presence of Children | Availability of Garden | Pet Adoption Decision |
+|-----------------------|-------------------------|----------------------|------------------------|-----------------------|
+| Yes                   | None                    | Any                  | Any                    | No pet                |
+| Yes                   | Average                 | Any                  | Any                    | Fish                  |
+| Yes                   | Normal                  | Any                  | Any                    | Fish                  |
+| Yes                   | A lot                   | Any                  | Any                    | Fish                  |
+| No                    | None                    | No                   | Any                    | No pet                |
+| No                    | None                    | Yes                  | Any                    | No pet                |
+| No                    | Average                 | Yes                  | Any                    | Fish                  |
+| No                    | Average                 | No                   | Yes                    | Cat                   |
+| No                    | Average                 | No                   | No                     | Cat                   |
+| No                    | Normal                  | Yes                  | Any                    | Fish                  |
+| No                    | Normal                  | No                   | Yes                    | Cat                   |
+| No                    | Normal                  | No                   | No                     | Cat                   |
+| No                    | A lot                   | Yes                  | Any                    | Fish                  |
+| No                    | A lot                   | No                   | Yes                    | Dog                   |
+| No                    | A lot                   | No                   | No                     | Cat                   |
+
+### Explanation of the Table:
+- Each row represents a unique combination of input values.
+- The "Pet Adoption Decision" column indicates the outcome based on the conditions specified in the decision description.
+- The table captures all relevant scenarios for adopting a pet based on the couple's criteria.
+
+Q: Make the rules mutually exclusive.
+
+A: Below is a revised DMN decision table that ensures the rules are mutually exclusive. Each row represents a unique combination of input values, and the output is determined without overlap among the conditions.
+
+| Presence of Allergies | Amount of Time Available | Presence of Children | Availability of Garden | Pet Adoption Decision |
+|-----------------------|-------------------------|----------------------|------------------------|-----------------------|
+| Yes                   | None                    | Any                  | Any                    | No pet                |
+| Yes                   | Average                 | Any                  | Any                    | Fish                  |
+| Yes                   | Normal                  | Any                  | Any                    | Fish                  |
+| Yes                   | A lot                   | Any                  | Any                    | Fish                  |
+| No                    | None                    | No                   | Any                    | No pet                |
+| No                    | None                    | Yes                  | Any                    | No pet                |
+| No                    | Average                 | Yes                  | Any                    | Fish                  |
+| No                    | Average                 | No                   | Yes                    | Cat                   |
+| No                    | Average                 | No                   | No                     | Cat                   |
+| No                    | Normal                  | Yes                  | Any                    | Fish                  |
+| No                    | Normal                  | No                   | Yes                    | Cat                   |
+| No                    | Normal                  | No                   | No                     | Cat                   |
+| No                    | A lot                   | Yes                  | Any                    | Fish                  |
+| No                    | A lot                   | No                   | Yes                    | Dog                   |
+| No                    | A lot                   | No                   | No                     | Cat                   |
+
+### Explanation of the Table:
+- Each condition is structured to ensure that no two rows can apply simultaneously for the same set of inputs.
+- The "Pet Adoption Decision" column reflects the outcome based on the specific conditions outlined in the decision description, ensuring clarity and mutual exclusivity in the decision-making process. 
+
+### Additional Adjustments for Mutual Exclusivity:
+To further clarify the mutual exclusivity, we can refine the table by ensuring that each decision is clearly defined based on the most specific conditions first:
+
+| Presence of Allergies | Amount of Time Available | Presence of Children | Availability of Garden | Pet Adoption Decision |
+|-----------------------|-------------------------|----------------------|------------------------|-----------------------|
+| Yes                   | Any                     | Any                  | Any                    | No pet                |
+| Yes                   | Average                 | Any                  | Any                    | Fish                  |
+| Yes                   | Normal                  | Any                  | Any                    | Fish                  |
+| Yes                   | A lot                   | Any                  | Any                    | Fish                  |
+| No                    | None                    | No                   | Any                    | No pet                |
+| No                    | None                    | Yes                  | Any                    | No pet                |
+| No                    | Average                 | Yes                  | Any                    | Fish                  |
+| No                    | Average                 | No                   | Yes                    | Cat                   |
+| No                    | Average                 | No                   | No                     | Cat                   |
+| No                    | Normal                  | Yes                  | Any                    | Fish                  |
+| No                    | Normal                  | No                   | Yes                    | Cat                   |
+| No                    | Normal                  | No                   | No                     | Cat                   |
+| No                    | A lot                   | Yes                  | Any                    | Fish                  |
+| No                    | A lot                   | No                   | Yes                    | Dog                   |
+| No                    | A lot                   | No                   | No                     | Cat                   |
+
+This ensures that the decision paths are clear and do not overlap, maintaining the integrity of the decision model.
+
+Q: Is this table complete? (I.e., is there an applicable rule for each set of inputs?) If it is incomplete, can you find an example for which no rule would be applicable?
+
+A: The table is not complete as it does not cover all possible combinations of the input variables. Specifically, there are scenarios where no rule applies based on the current structure of the table.
+
+### Example of an Incomplete Rule:
+Consider the following combination of inputs:
+
+- **Presence of Allergies:** No
+- **Amount of Time Available:** Average
+- **Presence of Children:** No
+- **Availability of Garden:** Yes
+
+In this case, the table does not provide a specific rule for this combination. While it has rules for various other combinations, this particular set of inputs does not lead to a defined output in the current decision table.
+
+### Additional Combinations That May Be Missing:
+1. **Presence of Allergies:** No
+   - **Amount of Time Available:** Average
+   - **Presence of Children:** No
+   - **Availability of Garden:** No
+
+2. **Presence of Allergies:** No
+   - **Amount of Time Available:** A lot
+   - **Presence of Children:** Yes
+   - **Availability of Garden:** No
+
+These combinations highlight that there are gaps in the rules provided in the table, indicating that additional rules need to be formulated to ensure that every possible combination of inputs leads to a defined output. 
+
+### Conclusion:
+To make the decision table complete, we need to add rules for these missing combinations, ensuring that every possible set of inputs has a corresponding pet adoption decision.
+
+Q: According to your table, answer the following question.  What is the pet going to be of a couple without allergies and average amount of time, no kids and with a garden?
+
+A: According to the table, for a couple without allergies, with an average amount of time available, no kids, and with a garden, the pet adoption decision would be to adopt a Cat.
+

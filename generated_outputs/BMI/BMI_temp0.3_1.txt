@@ -1,0 +1,174 @@
+Q: We will ask you a series of questions on Decision Model and Notation tables. Each question starts with "Q:", and each response should start with "A:". Below is a decision description, between quotation marks.  What does this description decide?
+
+"""The BMI of a person can be calculated based on their weight in kilogram and their length in meters by using the following formula: weight/(length*length). If the BMI value is above 30, then the BMI-level is considered Obese. If you are a male and the BMI-value is under 18.5 then the BMI-level is severely underweight and if you are female, then you are considered underweight with the same bmi-value. If the BMI-value is between 18.5 and 25 (without 25), then the BMI-level is underweight for a male and normal for a female. Lastly, if the BMI-value is between 25 and 30 and you are male then the BMI-level is normal but if you are a female then BMI-level is overweight.
+"""
+
+
+
+A: This description decides the BMI-level classification of a person based on their BMI value, which is calculated from their weight and height, and it takes into account the person's gender to determine specific categories such as Obese, Severely Underweight, Underweight, Normal, and Overweight.
+
+Q: What is the-BMI level of a male of 1.76m weighing 68 kgs?
+
+A: To calculate the BMI for a male weighing 68 kg and with a height of 1.76 m, we use the formula: 
+
+BMI = weight / (length * length)  
+BMI = 68 / (1.76 * 1.76)  
+BMI = 68 / 3.0976  
+BMI ≈ 21.94
+
+According to the description, since the BMI value is between 18.5 and 25 (without 25), the BMI-level for a male in this case is classified as "Normal."
+
+Q: What are the variables that influence this decision?
+
+A: The variables that influence this decision are:
+
+1. **Weight** (in kilograms) - This is the mass of the person being evaluated.
+2. **Height** (in meters) - This is the length of the person used to calculate BMI.
+3. **Gender** - This determines the classification thresholds for BMI levels, as different criteria are applied for males and females. 
+
+These variables are used to compute the BMI value and subsequently classify the individual's BMI-level.
+
+Q: For each input and output, give me an overview of their data type and their possible values.
+
+A: Here is an overview of the data types and possible values for each input and output:
+
+### Inputs:
+
+1. **Weight**
+   - **Data Type:** Numeric (Float or Integer)
+   - **Possible Values:** Any positive number representing weight in kilograms (e.g., 0.1 kg to 300 kg or more, depending on realistic human weights).
+
+2. **Height**
+   - **Data Type:** Numeric (Float)
+   - **Possible Values:** Any positive number representing height in meters (e.g., 0.5 m to 3.0 m or more, depending on realistic human heights).
+
+3. **Gender**
+   - **Data Type:** Categorical (String)
+   - **Possible Values:** "Male" or "Female".
+
+### Outputs:
+
+1. **BMI Value**
+   - **Data Type:** Numeric (Float)
+   - **Possible Values:** Any non-negative number, typically ranging from very low values (e.g., < 10) to very high values (e.g., > 40), depending on the weight and height inputs.
+
+2. **BMI Level**
+   - **Data Type:** Categorical (String)
+   - **Possible Values:** 
+     - "Severely Underweight" (for males with BMI < 18.5)
+     - "Underweight" (for females with BMI < 18.5)
+     - "Normal" (for males with 18.5 ≤ BMI < 25 and females with 18.5 ≤ BMI < 25)
+     - "Overweight" (for females with 25 ≤ BMI < 30)
+     - "Obese" (for both genders with BMI ≥ 30)
+
+This classification provides a clear understanding of how weight, height, and gender influence the BMI calculation and its resulting categorization.
+
+Q: What are the relevant values of the numerical variables?
+
+A: The relevant values of the numerical variables (Weight, Height, and BMI Value) are as follows:
+
+### 1. Weight
+- **Relevant Values:** 
+  - Must be a positive number representing weight in kilograms.
+  - Typical range for adults: 30 kg to 200 kg (though extreme cases may exist outside this range).
+  - Example values: 50 kg, 68 kg, 90 kg, 120 kg.
+
+### 2. Height
+- **Relevant Values:** 
+  - Must be a positive number representing height in meters.
+  - Typical range for adults: 1.0 m to 2.5 m.
+  - Example values: 1.5 m, 1.76 m, 1.85 m, 2.0 m.
+
+### 3. BMI Value
+- **Relevant Values:** 
+  - Calculated using the formula: BMI = weight / (height * height).
+  - Possible values can range from very low (e.g., < 10) to very high (e.g., > 40), depending on the weight and height inputs.
+  - Example values based on calculations: 
+    - A person weighing 50 kg and 1.6 m tall would have a BMI ≈ 19.53.
+    - A person weighing 100 kg and 1.8 m tall would have a BMI ≈ 30.86.
+
+These numerical variables are critical for determining the BMI level classification based on the provided decision description.
+
+Q: Could you generate a DMN decision table for this description? Make sure the table can be read horizontally: the column headers contain the inputs and output.
+
+A: Below is a DMN (Decision Model and Notation) decision table based on the provided description. The table is structured horizontally, with column headers representing the inputs and output.
+
+| Weight (kg) | Height (m) | Gender | BMI Value Range      | BMI Level               |
+|-------------|------------|--------|----------------------|-------------------------|
+| < 18.5      | Any        | Male   | < 18.5               | Severely Underweight     |
+| < 18.5      | Any        | Female | < 18.5               | Underweight              |
+| 18.5 - 25   | Any        | Male   | 18.5 ≤ BMI < 25      | Underweight              |
+| 18.5 - 25   | Any        | Female | 18.5 ≤ BMI < 25      | Normal                   |
+| 25 - 30     | Any        | Male   | 25 ≤ BMI < 30        | Normal                   |
+| 25 - 30     | Any        | Female | 25 ≤ BMI < 30        | Overweight               |
+| ≥ 30        | Any        | Male   | BMI ≥ 30             | Obese                    |
+| ≥ 30        | Any        | Female | BMI ≥ 30             | Obese                    |
+
+### Notes:
+- The "BMI Value Range" column indicates the range of BMI values that correspond to each classification.
+- The "Weight" and "Height" columns are simplified for clarity; in practice, they would be used to calculate the BMI value.
+- The "Gender" column specifies the applicable gender for each classification.
+- The decision table captures the relationships between weight, height, gender, and the resulting BMI level classification.
+
+Q: Make the rules mutually exclusive.
+
+A: Below is a revised DMN (Decision Model and Notation) decision table with mutually exclusive rules. Each rule is designed to ensure that only one classification applies based on the combination of weight, height, gender, and BMI value.
+
+| Weight (kg) | Height (m) | Gender | BMI Value Range      | BMI Level               |
+|-------------|------------|--------|----------------------|-------------------------|
+| < 18.5      | Any        | Male   | BMI < 18.5           | Severely Underweight     |
+| < 18.5      | Any        | Female | BMI < 18.5           | Underweight              |
+| 18.5 - 24.9 | Any        | Male   | 18.5 ≤ BMI < 25      | Underweight              |
+| 18.5 - 24.9 | Any        | Female | 18.5 ≤ BMI < 25      | Normal                   |
+| 25 - 29.9   | Any        | Male   | 25 ≤ BMI < 30        | Normal                   |
+| 25 - 29.9   | Any        | Female | 25 ≤ BMI < 30        | Overweight               |
+| ≥ 30        | Any        | Male   | BMI ≥ 30             | Obese                    |
+| ≥ 30        | Any        | Female | BMI ≥ 30             | Obese                    |
+
+### Notes:
+- The BMI Value Range column specifies the exact ranges for BMI values that correspond to each classification.
+- The weight ranges have been adjusted to ensure that they are mutually exclusive, particularly for the underweight and normal classifications.
+- This structure ensures that each combination of inputs leads to a unique output, preventing any overlap between categories.
+
+Q: Is this table complete? (I.e., is there an applicable rule for each set of inputs?) If it is incomplete, can you find an example for which no rule would be applicable?
+
+A: The provided DMN decision table is not complete, as there are certain input combinations for which no rule would be applicable. Specifically, the table does not account for situations where the weight and height inputs yield a BMI value that falls outside the defined ranges or where the inputs do not logically correspond to a valid human BMI classification.
+
+### Example of Incomplete Rule:
+1. **Weight:** 0 kg
+2. **Height:** 0 m
+3. **Gender:** Any
+
+In this case, the inputs are invalid because weight and height cannot be zero. This scenario does not have a corresponding rule in the decision table, as BMI calculations require positive values for both weight and height. 
+
+### Additional Examples of Inapplicable Rules:
+- **Weight:** -10 kg (negative weight)
+- **Height:** 1.5 m
+- **Gender:** Male
+
+This combination is invalid due to the negative weight, which would not yield a valid BMI classification.
+
+- **Weight:** 70 kg
+- **Height:** -1.75 m (negative height)
+- **Gender:** Female
+
+Again, this combination is invalid due to the negative height, leading to no applicable rule.
+
+### Conclusion:
+To make the decision table complete, it should include rules that handle invalid inputs, such as zero or negative values for weight and height, and possibly a default output for such cases (e.g., "Invalid Input").
+
+Q: According to your table, answer the following question.  What is the-BMI level of a girl of 1.4m weighing 42 kgs?
+
+A: To determine the BMI level of a girl weighing 42 kg and with a height of 1.4 m, we first calculate the BMI using the formula:
+
+BMI = weight / (height * height)  
+BMI = 42 / (1.4 * 1.4)  
+BMI = 42 / 1.96  
+BMI ≈ 21.43
+
+Now, according to the decision table:
+
+- For females, if the BMI value is between 18.5 and 25 (without 25), the BMI-level is classified as "Normal."
+
+Since the calculated BMI of approximately 21.43 falls within this range, the BMI level for the girl is classified as "Normal."
+

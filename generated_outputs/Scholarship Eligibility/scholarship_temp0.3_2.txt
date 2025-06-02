@@ -1,0 +1,171 @@
+Q: We will ask you a series of questions on Decision Model and Notation tables. Each question starts with "Q:", and each response should start with "A:". Below is a decision description, between quotation marks.  What does this description decide?
+
+"""An institution decides to distribute scholarships but can obviously not give them to everyone. Therefore, they decide to distribute them based on grades, annual income and whether that person already received any scholarships. In short, a person can only be eligible for a scholarship if their grades are excellent or good, they earn less than 50000 a year and have not received any other scholarship yet. All the other cases make that the person is not eligible for that scholarship.
+"""
+
+
+
+A: This description decides the eligibility criteria for receiving scholarships from the institution. Specifically, it outlines that a person can be eligible for a scholarship if they meet the following conditions: their grades are classified as excellent or good, their annual income is less than $50,000, and they have not previously received any other scholarships. If any of these conditions are not met, the person is deemed ineligible for the scholarship.
+
+Q: Is a student with good grades and an annual income of 33000 eligible if he has no other scholarships assigned?
+
+A: Yes, a student with good grades (classified as good), an annual income of $33,000 (which is less than $50,000), and no other scholarships assigned is eligible for the scholarship according to the described criteria.
+
+Q: What are the variables that influence this decision?
+
+A: The variables that influence this decision are:
+
+1. **Grades**: The classification of a student's grades as either excellent or good.
+2. **Annual Income**: The total annual income of the student, specifically whether it is less than $50,000.
+3. **Previous Scholarships**: Whether the student has received any other scholarships in the past (i.e., if they have not received any other scholarships).
+
+Q: For each input and output, give me an overview of their data type and their possible values.
+
+A: Here is an overview of the input and output variables, including their data types and possible values:
+
+**Inputs:**
+
+1. **Grades**
+   - **Data Type**: Categorical
+   - **Possible Values**: 
+     - Excellent
+     - Good
+     - Fair (not eligible)
+     - Poor (not eligible)
+
+2. **Annual Income**
+   - **Data Type**: Numeric
+   - **Possible Values**: Any numeric value (but specifically relevant for this decision are values less than $50,000; values equal to or greater than $50,000 make a person ineligible).
+
+3. **Previous Scholarships**
+   - **Data Type**: Boolean
+   - **Possible Values**: 
+     - Yes (the student has received other scholarships; not eligible)
+     - No (the student has not received other scholarships; eligible if other criteria are met)
+
+**Output:**
+
+- **Eligibility for Scholarship**
+  - **Data Type**: Boolean
+  - **Possible Values**: 
+    - Eligible (true)
+    - Not Eligible (false) 
+
+This structure clearly defines how each input influences the output regarding scholarship eligibility.
+
+Q: What are the relevant values of the numerical variables?
+
+A: The relevant values of the numerical variable, specifically **Annual Income**, are as follows:
+
+- **Values less than $50,000**: These values indicate eligibility for the scholarship, as they meet the income criterion.
+- **Values equal to or greater than $50,000**: These values indicate ineligibility for the scholarship, as they do not meet the income criterion.
+
+In summary, the critical threshold for the numerical variable is $50,000, with any income below this amount being relevant for determining eligibility.
+
+Q: Could you generate a DMN decision table for this description? Make sure the table can be read horizontally: the column headers contain the inputs and output.
+
+A: Below is a DMN decision table based on the provided scholarship eligibility description. The table is structured to be read horizontally, with column headers representing the inputs and the output.
+
+| Grades   | Annual Income | Previous Scholarships | Eligibility for Scholarship |
+|----------|---------------|-----------------------|-----------------------------|
+| Excellent| < 50000       | No                    | Eligible                    |
+| Excellent| < 50000       | Yes                   | Not Eligible                |
+| Excellent| ≥ 50000       | No                    | Not Eligible                |
+| Excellent| ≥ 50000       | Yes                   | Not Eligible                |
+| Good     | < 50000       | No                    | Eligible                    |
+| Good     | < 50000       | Yes                   | Not Eligible                |
+| Good     | ≥ 50000       | No                    | Not Eligible                |
+| Good     | ≥ 50000       | Yes                   | Not Eligible                |
+| Fair     | < 50000       | No                    | Not Eligible                |
+| Fair     | < 50000       | Yes                   | Not Eligible                |
+| Fair     | ≥ 50000       | No                    | Not Eligible                |
+| Fair     | ≥ 50000       | Yes                   | Not Eligible                |
+| Poor     | < 50000       | No                    | Not Eligible                |
+| Poor     | < 50000       | Yes                   | Not Eligible                |
+| Poor     | ≥ 50000       | No                    | Not Eligible                |
+| Poor     | ≥ 50000       | Yes                   | Not Eligible                |
+
+In this table:
+- Each row represents a unique combination of input values.
+- The output column indicates whether the student is eligible or not based on the given criteria.
+
+Q: Make the rules mutually exclusive.
+
+A: Below is a revised DMN decision table that ensures the rules are mutually exclusive. Each combination of input values leads to a distinct outcome without overlap.
+
+| Grades   | Annual Income | Previous Scholarships | Eligibility for Scholarship |
+|----------|---------------|-----------------------|-----------------------------|
+| Excellent| < 50000       | No                    | Eligible                    |
+| Excellent| < 50000       | Yes                   | Not Eligible                |
+| Excellent| ≥ 50000       | No                    | Not Eligible                |
+| Excellent| ≥ 50000       | Yes                   | Not Eligible                |
+| Good     | < 50000       | No                    | Eligible                    |
+| Good     | < 50000       | Yes                   | Not Eligible                |
+| Good     | ≥ 50000       | No                    | Not Eligible                |
+| Good     | ≥ 50000       | Yes                   | Not Eligible                |
+| Fair     | < 50000       | No                    | Not Eligible                |
+| Fair     | < 50000       | Yes                   | Not Eligible                |
+| Fair     | ≥ 50000       | No                    | Not Eligible                |
+| Fair     | ≥ 50000       | Yes                   | Not Eligible                |
+| Poor     | < 50000       | No                    | Not Eligible                |
+| Poor     | < 50000       | Yes                   | Not Eligible                |
+| Poor     | ≥ 50000       | No                    | Not Eligible                |
+| Poor     | ≥ 50000       | Yes                   | Not Eligible                |
+
+To ensure mutual exclusivity, we can simplify the table by removing redundant rows and focusing on the relevant conditions:
+
+| Grades   | Annual Income | Previous Scholarships | Eligibility for Scholarship |
+|----------|---------------|-----------------------|-----------------------------|
+| Excellent| < 50000       | No                    | Eligible                    |
+| Excellent| < 50000       | Yes                   | Not Eligible                |
+| Excellent| ≥ 50000       | -                     | Not Eligible                |
+| Good     | < 50000       | No                    | Eligible                    |
+| Good     | < 50000       | Yes                   | Not Eligible                |
+| Good     | ≥ 50000       | -                     | Not Eligible                |
+| Fair    | -             | -                     | Not Eligible                |
+| Poor    | -             | -                     | Not Eligible                |
+
+In this simplified table:
+- Rows with "Fair" and "Poor" grades lead directly to "Not Eligible," regardless of income or previous scholarships.
+- The conditions for "Excellent" and "Good" grades are clearly defined based on income and previous scholarships, ensuring no overlap in eligibility outcomes.
+
+Q: Is this table complete? (I.e., is there an applicable rule for each set of inputs?) If it is incomplete, can you find an example for which no rule would be applicable?
+
+A: The revised DMN decision table is not complete, as it does not account for all possible combinations of input values. Specifically, there are scenarios where the income is equal to $50,000, which were not explicitly covered in the previous table. 
+
+Here are the potential gaps:
+
+1. **Grades: Excellent, Good, Fair, Poor**
+2. **Annual Income: Exactly $50,000**
+3. **Previous Scholarships: Yes or No**
+
+For example, if we consider a student with:
+- Grades: Excellent
+- Annual Income: $50,000
+- Previous Scholarships: No
+
+In this case, there is no applicable rule in the current table because the condition for eligibility states that the annual income must be less than $50,000. Therefore, the situation where a student has an annual income of exactly $50,000 is not addressed.
+
+To make the table complete, we need to add rules for when the annual income is exactly $50,000 for each grade category and both possibilities for previous scholarships (Yes/No). Here’s how the updated table could look:
+
+| Grades   | Annual Income | Previous Scholarships | Eligibility for Scholarship |
+|----------|---------------|-----------------------|-----------------------------|
+| Excellent| < 50000       | No                    | Eligible                    |
+| Excellent| < 50000       | Yes                   | Not Eligible                |
+| Excellent| = 50000       | No                    | Not Eligible                |
+| Excellent| = 50000       | Yes                   | Not Eligible                |
+| Excellent| > 50000       | -                     | Not Eligible                |
+| Good     | < 50000       | No                    | Eligible                    |
+| Good     | < 50000       | Yes                   | Not Eligible                |
+| Good     | = 50000       | No                    | Not Eligible                |
+| Good     | = 50000       | Yes                   | Not Eligible                |
+| Good     | > 50000       | -                     | Not Eligible                |
+| Fair     | -             | -                     | Not Eligible                |
+| Poor     | -             | -                     | Not Eligible                |
+
+This updated table now accounts for the scenario where the annual income is exactly $50,000, ensuring that there is an applicable rule for each set of inputs.
+
+Q: According to your table, answer the following question.  Is a student with excellent grades and an annual income of 88000 eligible if he has no other scholarships assigned?
+
+A: According to the table, a student with excellent grades and an annual income of $88,000 is not eligible for the scholarship, regardless of whether they have received any other scholarships. The eligibility criteria state that a person must earn less than $50,000 to be eligible, and since $88,000 exceeds this threshold, the student is deemed not eligible.
+

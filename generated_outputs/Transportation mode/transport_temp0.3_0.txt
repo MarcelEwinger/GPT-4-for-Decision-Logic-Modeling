@@ -1,0 +1,130 @@
+Q: We will ask you a series of questions on Decision Model and Notation tables. Each question starts with "Q:", and each response should start with "A:". Below is a decision description, between quotation marks.  What does this description decide?
+
+"""A person has the possibility to chose one of three transportation modes: walking, biking and driving a car. This person chooses their mode of transportation based on the distance, the weather and whether they are in a hurry. If the distance is bigger or equal to 10 km and the person is not in a hurry, then they choose to bike if it is sunny or cloudy and if it is rainy or freezing then the car is chosen. In any case, if the distance is more than 10 km and the person is in a hurry then the chosen mode of transportation is car. For medium distances between 5 and 10 kilometers, if it is raining the car is chosen. For the same medium distance, if the person is in a hurry the car is chosen. Again for medium distances and there is no hurry to arrive, the bike is chosen if it sunny or cloudy and if it is freezing then the car is chosen. For a distance between 2 and 5 kilometers, the car is chosen if it raining or if the person is in a hurry and it is sunny, cloudy or freezing outside; otherwise the bike is chosen. Finally, for a distance smaller than 2 kilometers, it the person is in a hurry the bike is chosen and otherwise the person will go by foot.
+"""
+
+
+
+A: This description decides the mode of transportation a person will choose based on three factors: distance, weather conditions, and whether they are in a hurry. The options for transportation include walking, biking, and driving a car, with specific rules governing the choice based on the given criteria.
+
+Q: What method of transport should I use if I want to go 15kms, have plenty of time and the sun is shining?
+
+A: If you want to go 15 km, have plenty of time, and the sun is shining, you should choose to drive a car, as the distance is greater than 10 km and you are not in a hurry.
+
+Q: What are the variables that influence this decision?
+
+A: The variables that influence this decision are distance (categorized as less than 2 km, between 2 and 5 km, between 5 and 10 km, and 10 km or more), weather conditions (sunny, cloudy, rainy, freezing), and whether the person is in a hurry (yes or no).
+
+Q: For each input and output, give me an overview of their data type and their possible values.
+
+A: Here is an overview of the input and output data types along with their possible values:
+
+1. **Input Variables:**
+   - **Distance (numeric)**
+     - Data Type: Integer or Float
+     - Possible Values: 
+       - Less than 2 km
+       - Between 2 km and 5 km
+       - Between 5 km and 10 km
+       - Greater than or equal to 10 km
+
+   - **Weather (categorical)**
+     - Data Type: String
+     - Possible Values:
+       - Sunny
+       - Cloudy
+       - Rainy
+       - Freezing
+
+   - **In a Hurry (boolean)**
+     - Data Type: Boolean
+     - Possible Values:
+       - Yes
+       - No
+
+2. **Output Variable:**
+   - **Mode of Transportation (categorical)**
+     - Data Type: String
+     - Possible Values:
+       - Walking
+       - Biking
+       - Driving a Car
+
+Q: What are the relevant values of the numerical variables?
+
+A: The relevant values of the numerical variable, which is distance, are categorized as follows:
+
+1. **Distance (in kilometers):**
+   - Less than 2 km (e.g., 0 km, 1 km)
+   - Between 2 km and 5 km (e.g., 2 km, 3 km, 4 km, 5 km)
+   - Between 5 km and 10 km (e.g., 5 km, 6 km, 7 km, 8 km, 9 km, 10 km)
+   - Greater than or equal to 10 km (e.g., 10 km, 11 km, 15 km, etc.)
+
+These categories help determine the mode of transportation based on the specified decision rules.
+
+Q: Could you generate a DMN decision table for this description? Make sure the table can be read horizontally: the column headers contain the inputs and output.
+
+A: Below is a DMN decision table that represents the decision-making process for choosing a mode of transportation based on the given description. The table is organized horizontally, with column headers for inputs and output.
+
+| Distance (km)      | Weather Condition | In a Hurry | Mode of Transportation |
+|---------------------|-------------------|------------|-----------------------|
+| < 2                 | Any               | Yes        | Biking                |
+| < 2                 | Any               | No         | Walking               |
+| 2 - 5               | Rainy             | Any        | Driving a Car         |
+| 2 - 5               | Sunny/Cloudy/Freezing | Yes     | Driving a Car         |
+| 2 - 5               | Sunny/Cloudy/Freezing | No      | Biking                |
+| 5 - 10              | Rainy             | Any        | Driving a Car         |
+| 5 - 10              | Sunny/Cloudy      | Yes        | Driving a Car         |
+| 5 - 10              | Sunny/Cloudy      | No         | Biking                |
+| >= 10               | Sunny/Cloudy      | No         | Biking                |
+| >= 10               | Rainy/Freezing    | No         | Driving a Car         |
+| >= 10               | Any               | Yes        | Driving a Car         |
+
+This table captures all the rules specified in the decision description, allowing for easy interpretation of the mode of transportation based on the input variables.
+
+Q: Make the rules mutually exclusive.
+
+A: Below is a revised DMN decision table that ensures the rules are mutually exclusive. Each rule is structured to cover distinct scenarios without overlap.
+
+| Distance (km)      | Weather Condition       | In a Hurry | Mode of Transportation |
+|---------------------|-------------------------|------------|-----------------------|
+| < 2                 | Any                     | Yes        | Biking                |
+| < 2                 | Any                     | No         | Walking               |
+| 2 - 5               | Rainy                   | Any        | Driving a Car         |
+| 2 - 5               | Sunny                   | Yes        | Driving a Car         |
+| 2 - 5               | Cloudy                  | Yes        | Driving a Car         |
+| 2 - 5               | Freezing                | Yes        | Driving a Car         |
+| 2 - 5               | Sunny                   | No         | Biking                |
+| 2 - 5               | Cloudy                  | No         | Biking                |
+| 2 - 5               | Freezing                | No         | Driving a Car         |
+| 5 - 10              | Rainy                   | Any        | Driving a Car         |
+| 5 - 10              | Sunny                   | Yes        | Driving a Car         |
+| 5 - 10              | Cloudy                  | Yes        | Driving a Car         |
+| 5 - 10              | Sunny                   | No         | Biking                |
+| 5 - 10              | Cloudy                  | No         | Biking                |
+| >= 10               | Sunny                   | No         | Biking                |
+| >= 10               | Cloudy                  | No         | Biking                |
+| >= 10               | Rainy                   | No         | Driving a Car         |
+| >= 10               | Freezing                | No         | Driving a Car         |
+| >= 10               | Any                     | Yes        | Driving a Car         |
+
+This table maintains mutual exclusivity by ensuring that each combination of inputs leads to a unique output, thereby avoiding any ambiguity in the decision-making process.
+
+Q: Is this table complete? (I.e., is there an applicable rule for each set of inputs?) If it is incomplete, can you find an example for which no rule would be applicable?
+
+A: The revised DMN decision table is not complete. There are scenarios where no rule would be applicable, particularly in the case of weather conditions that are not explicitly covered by the rules.
+
+For example, consider the following input scenario:
+
+- **Distance:** 5 km
+- **Weather Condition:** Snowy (not mentioned in the table)
+- **In a Hurry:** No
+
+In this case, there is no applicable rule for the combination of a distance of 5 km, a snowy weather condition, and not being in a hurry. The table does not account for weather conditions outside of sunny, cloudy, rainy, or freezing, leading to an incomplete decision-making process.
+
+To ensure completeness, all possible weather conditions should be accounted for in the decision table, including any additional conditions like snowy weather.
+
+Q: According to your table, answer the following question.  What method of transport should I use if I want to go 1.8kms, am in a hurry and the weather is freezing?
+
+A: According to the table, if you want to go 1.8 km, are in a hurry, and the weather is freezing, you should choose to bike. The rule states that for distances less than 2 km, if you are in a hurry, the mode of transportation is biking.
+

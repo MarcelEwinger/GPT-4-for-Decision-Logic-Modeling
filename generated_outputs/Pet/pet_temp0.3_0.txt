@@ -1,0 +1,186 @@
+Q: We will ask you a series of questions on Decision Model and Notation tables. Each question starts with "Q:", and each response should start with "A:". Below is a decision description, between quotation marks.  What does this description decide?
+
+"""A couple is planning their future and is determining under which conditions to adopt a certain pet. Together they decided that if someone has allergies and they have no time to take care of a pet, then no pet is adopted. The couple also decided to not take in an animal if they don't have kids. However, if they have an average or a large amount of time available, then if they have allergies they want to take in a fish. The couple decides that they also want a fish if they have kids and no allergies, even if they don't have a lot of time available. The couple decides to take in a cat or a dog only if no one has allergies. A dog is taken in if they have a garden, kids and a lot of time. The dog is also adopted if they have a garden, no kids and have normal or a lot oflarge amount of time to spare. In all the remaining cases, the couple decides they want to have a cat.
+"""
+
+
+
+A: The description decides the conditions under which the couple will adopt a pet, specifying the types of pets (fish, cat, or dog) based on factors such as allergies, time availability, presence of children, and having a garden.
+
+Q: What pet should a couple with allergies choose if they have a lot of time to take care of it?
+
+A: If the couple has allergies and a lot of time to take care of a pet, they should choose to adopt a fish.
+
+Q: What are the variables that influence this decision?
+
+A: The variables that influence the decision on which pet to adopt include:
+
+1. Allergies (whether anyone in the couple has allergies)
+2. Time availability (amount of time they have to take care of a pet: none, average, normal, or a lot)
+3. Presence of children (whether they have kids)
+4. Availability of a garden (whether they have a garden)
+
+Q: For each input and output, give me an overview of their data type and their possible values.
+
+A: Here is an overview of the input and output variables, their data types, and possible values:
+
+### Inputs:
+
+1. **Allergies**
+   - **Data Type:** Boolean
+   - **Possible Values:** 
+     - True (someone has allergies)
+     - False (no one has allergies)
+
+2. **Time Availability**
+   - **Data Type:** Categorical
+   - **Possible Values:**
+     - None
+     - Average
+     - Normal
+     - A lot
+
+3. **Presence of Children**
+   - **Data Type:** Boolean
+   - **Possible Values:**
+     - True (they have kids)
+     - False (no kids)
+
+4. **Availability of Garden**
+   - **Data Type:** Boolean
+   - **Possible Values:**
+     - True (they have a garden)
+     - False (no garden)
+
+### Outputs:
+
+1. **Adopted Pet**
+   - **Data Type:** Categorical
+   - **Possible Values:**
+     - No pet (if conditions for adopting any pet are not met)
+     - Fish (if conditions for adopting a fish are met)
+     - Dog (if conditions for adopting a dog are met)
+     - Cat (if conditions for adopting a cat are met)
+
+Q: What are the relevant values of the numerical variables?
+
+A: In the provided decision description, there are no numerical variables explicitly mentioned. All the variables influencing the decision are categorical or boolean in nature. The time availability variable is categorical and can be considered to have an implicit order but does not represent numerical values. Here’s a recap of the relevant values for the categorical variable:
+
+### Relevant Values of Categorical Variables:
+
+1. **Time Availability** (implicitly ordered):
+   - None
+   - Average
+   - Normal
+   - A lot
+
+Since there are no numerical variables with specific values, the focus remains on these categorical options.
+
+Q: Could you generate a DMN decision table for this description? Make sure the table can be read horizontally: the column headers contain the inputs and output.
+
+A: Below is a DMN decision table based on the provided description. The table is structured horizontally, with column headers representing the inputs and the output.
+
+| Allergies | Time Availability | Presence of Children | Availability of Garden | Adopted Pet |
+|-----------|-------------------|----------------------|------------------------|--------------|
+| True      | None              | False                | False                  | No pet       |
+| True      | None              | False                | True                   | No pet       |
+| True      | Average           | False                | False                  | No pet       |
+| True      | Average           | False                | True                   | No pet       |
+| True      | Normal            | False                | False                  | No pet       |
+| True      | Normal            | False                | True                   | No pet       |
+| True      | A lot             | False                | False                  | No pet       |
+| True      | A lot             | False                | True                   | No pet       |
+| True      | None              | True                 | False                  | No pet       |
+| True      | None              | True                 | True                   | No pet       |
+| True      | Average           | True                 | False                  | No pet       |
+| True      | Average           | True                 | True                   | No pet       |
+| True      | Normal            | True                 | False                  | No pet       |
+| True      | Normal            | True                 | True                   | No pet       |
+| True      | A lot             | True                 | False                  | No pet       |
+| True      | A lot             | True                 | True                   | No pet       |
+| False     | None              | False                | False                  | No pet       |
+| False     | None              | False                | True                   | No pet       |
+| False     | Average           | False                | False                  | No pet       |
+| False     | Average           | False                | True                   | No pet       |
+| False     | Normal            | False                | False                  | No pet       |
+| False     | Normal            | False                | True                   | No pet       |
+| False     | A lot             | False                | False                  | No pet       |
+| False     | A lot             | False                | True                   | No pet       |
+| False     | None              | True                 | False                  | Fish         |
+| False     | None              | True                 | True                   | Fish         |
+| False     | Average           | True                 | False                  | Fish         |
+| False     | Average           | True                 | True                   | Fish         |
+| False     | Normal            | True                 | False                  | Fish         |
+| False     | Normal            | True                 | True                   | Fish         |
+| False     | A lot             | True                 | False                  | Fish         |
+| False     | A lot             | True                 | True                   | Fish         |
+| False     | None              | False                | True                   | Dog          |
+| False     | Average           | False                | True                   | Dog          |
+| False     | Normal            | False                | True                   | Dog          |
+| False     | A lot             | False                | True                   | Dog          |
+| False     | A lot             | True                 | True                   | Dog          |
+| False     | A lot             | True                 | False                  | Cat          |
+| False     | Normal            | True                 | False                  | Cat          |
+| False     | Average           | True                 | False                  | Cat          |
+| False     | None              | True                 | False                  | Cat          |
+
+### Notes:
+- The table includes all combinations of the input variables and the corresponding output (adopted pet).
+- The conditions under which each pet is adopted are reflected in the output column.
+- The "No pet" option is used when the couple cannot adopt any pet due to allergies or lack of children.
+
+Q: Make the rules mutually exclusive.
+
+A: Below is the revised DMN decision table with mutually exclusive rules. Each combination of inputs leads to a single output, ensuring that no two rules can apply simultaneously.
+
+| Allergies | Time Availability | Presence of Children | Availability of Garden | Adopted Pet |
+|-----------|-------------------|----------------------|------------------------|--------------|
+| True      | Any               | Any                  | Any                    | No pet       |
+| False     | None              | False                | False                  | No pet       |
+| False     | None              | False                | True                   | No pet       |
+| False     | None              | True                 | False                  | Fish         |
+| False     | None              | True                 | True                   | Fish         |
+| False     | Average           | False                | False                  | No pet       |
+| False     | Average           | False                | True                   | Dog          |
+| False     | Average           | True                 | False                  | Fish         |
+| False     | Average           | True                 | True                   | Fish         |
+| False     | Normal            | False                | False                  | No pet       |
+| False     | Normal            | False                | True                   | Dog          |
+| False     | Normal            | True                 | False                  | Fish         |
+| False     | Normal            | True                 | True                   | Fish         |
+| False     | A lot             | False                | False                  | No pet       |
+| False     | A lot             | False                | True                   | Dog          |
+| False     | A lot             | True                 | False                  | Fish         |
+| False     | A lot             | True                 | True                   | Dog          |
+| False     | Any               | True                 | Any                    | Cat          |
+
+### Notes:
+- The first row captures the case where anyone has allergies, leading to "No pet" regardless of other conditions.
+- The subsequent rows handle the cases for different combinations of time availability, presence of children, and availability of a garden while ensuring that each rule is mutually exclusive.
+- The last row indicates that if there are no allergies and they have kids (regardless of time or garden), they will adopt a cat in all remaining scenarios.
+
+Q: Is this table complete? (I.e., is there an applicable rule for each set of inputs?) If it is incomplete, can you find an example for which no rule would be applicable?
+
+A: The revised DMN decision table is not complete. There are scenarios where no rule would be applicable, particularly when the input conditions do not match any of the defined rules.
+
+### Example of Incomplete Rule Application:
+Consider the following inputs:
+- **Allergies:** False (no one has allergies)
+- **Time Availability:** A lot
+- **Presence of Children:** False (no kids)
+- **Availability of Garden:** False (no garden)
+
+In this case, there is no rule in the table that explicitly covers this combination of inputs. According to the provided description, the couple would not adopt a pet if they have no children and no allergies, but the table does not account for the specific case where they have "a lot" of time available without kids or a garden.
+
+### Conclusion:
+The table needs additional rules to cover all possible combinations of inputs, ensuring that every possible set of inputs leads to a defined output. Specifically, we need to create rules that address scenarios where there are no children and the couple has significant time availability, as well as other combinations that may not currently be represented. 
+
+### Suggested Additions:
+To make the table complete, we could add rules for cases where:
+1. **Allergies:** False, **Time Availability:** A lot, **Presence of Children:** False, **Availability of Garden:** False → No pet
+2. Other combinations that might lead to "No pet" or "Cat" should also be clearly defined based on the original decision logic.
+
+Q: According to your table, answer the following question.  What is the pet going to be of a couple without allergies and average amount of time, no kids and with a garden?
+
+A: According to the table, a couple without allergies, with an average amount of time, no kids, and with a garden will adopt a dog.
+

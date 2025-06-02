@@ -2,27 +2,27 @@
 Program for querying GPT-3 through the OpenAI API.
 For each description (prompt1-6), it goes through the entire conversation three
 times at four different temperature values, and saves the complete output.
-
-Author: Simon Vandevelde <s.vandevelde@kuleuven.be>
 """
 import os
+from openai import OpenAI
 import openai
 import time
 
-openai.api_key = "YOUR_KEY_HERE"
-
+client = OpenAI(
+  api_key="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"
+)
 
 def query_openai(prompt, temp):
-    response = openai.Completion.create(
-      model="text-davinci-003",
-      prompt=prompt,
-      temperature=temp,
-      max_tokens=2048,
-      top_p=1,
-      frequency_penalty=0.0,
-      presence_penalty=0.6,
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=temp,
+        max_tokens=2048,
+        top_p=1,
+        frequency_penalty=0.0,
+        presence_penalty=0.6,
     )
-    return response.choices[0].text
+    return response.choices[0].message.content
 
 
 prompt1 = """The BMI of a person can be calculated based on their weight in kilogram and their length in meters by using the following formula: weight/(length*length). If the BMI value is above 30, then the BMI-level is considered Obese. If you are a male and the BMI-value is under 18.5 then the BMI-level is severely underweight and if you are female, then you are considered underweight with the same bmi-value. If the BMI-value is between 18.5 and 25 (without 25), then the BMI-level is underweight for a male and normal for a female. Lastly, if the BMI-value is between 25 and 30 and you are male then the BMI-level is normal but if you are a female then BMI-level is overweight.
@@ -46,6 +46,7 @@ prompt6 = """A person has the possibility to chose one of three transportation m
 
 
 # prompts = [prompt1, prompt2, prompt3, prompt4, prompt5, prompt6]
+'''
 prompts = [
            ('BMI',
             prompt1,
@@ -76,6 +77,35 @@ prompts = [
             'What method of transport should I use if I want to go 1.8kms, am in a hurry and the weather is freezing?'
             )
            ]
+'''
+
+prompts = [          
+         ('pet',
+            prompt2,
+            "What pet should a couple with allergies choose if they have a lot of time to take care of it?",
+            "What is the pet going to be of a couple without allergies and average amount of time, no kids and with a garden?"),
+           ('driver',
+            prompt3,
+            'Is a 23 year old person who did not pass their practical test and is a national resident eligible for a driver\'s license?',
+            'Is a 32 year old person that failed the theoretical test and is a national resident eligible for a driver\'s licence?',
+            ),
+           ('vacation',
+            prompt4,
+            'How many holidays does a 32 year old receive if they have 6 years of service?',
+            'How many holidays does a 64 year old receive if they have 32 years of service?'
+            ),
+           ('scholarship',
+            prompt5,
+            'Is a student with good grades and an annual income of 33000 eligible if he has no other scholarships assigned?',
+            'Is a student with excellent grades and an annual income of 88000 eligible if he has no other scholarships assigned?'
+            ),
+           ('transport',
+            prompt6,
+            'What method of transport should I use if I want to go 15kms, have plenty of time and the sun is shining?',
+            'What method of transport should I use if I want to go 1.8kms, am in a hurry and the weather is freezing?'
+            )
+           ]
+
 
 
 def run_questions(prompt, challenge1, challenge2, temp):
@@ -97,19 +127,36 @@ def run_questions(prompt, challenge1, challenge2, temp):
         time.sleep(10)  # Sleep we do not hit the throughput limit.
     return query
 
+'''
 for name, prompt, challenge1, challenge2, in prompts:
     for i in range(0, 3):
         for j in [0, 0.3, 0.7, 1]:
             try:
                 result = run_questions(prompt, challenge1, challenge2, j)
-                with open(f'{name}_temp{j}_{i}.txt', 'w') as fp:
+                with open(f'{name}_temp{j}_{i}.txt', 'w', encoding='utf-8') as fp:
+                    fp.write(result)
+            except openai.ServiceUnavailableError:
+                # OpenAI down. Try again in 60s!
+                import time
+                time.sleep(60)
+                result = run_questions(prompt, challenge1, challenge2, j)
+                with open(f'{name}_temp{j}_{i}.txt', 'w', encoding='utf-8') as fp:
+                    fp.write(result)
+            print(f'Finished {name}_temp{j}_{i}')
+    break
+'''
+for name, prompt, challenge1, challenge2, in prompts:
+    for i in range(0, 3):
+        for j in [0, 0.3, 0.7, 1]:
+            try:
+                result = run_questions(prompt, challenge1, challenge2, j)
+                with open(f'{name}_temp{j}_{i}.txt', 'w', encoding='utf-8') as fp:
                     fp.write(result)
             except openai.error.ServiceUnavailableError:
                 # OpenAI down. Try again in 60s!
                 import time
                 time.sleep(60)
                 result = run_questions(prompt, challenge1, challenge2, j)
-                with open(f'{name}_temp{j}_{i}.txt', 'w') as fp:
+                with open(f'{name}_temp{j}_{i}.txt', 'w', encoding='utf-8') as fp:
                     fp.write(result)
             print(f'Finished {name}_temp{j}_{i}')
-    break
