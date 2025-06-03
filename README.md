@@ -16,7 +16,7 @@ The data is as follows:
  - The BMI of a person can be calculated based on weight in kgs and length of a person in meters by using the following formula: weight/(length*length). If the BMI value is above 30, then the BMI-level is considered Obese. If you are a male and the BMI-value is under 18.5 then the BMI-level is severely underweight and if you are female, then you are considered underweight with the same bmi-value. If the BMI-value is between 18.5 and 25 (without 25), then the BMI-level is underweight for a male and normal for a female. Lastly, if the BMI-value is between 25 and 30 and you are a Male then the BMI-level is normal but if you are a female then BMI-level is overweight.
       
    -    Q1: What does this description decide?
-        -  The description decide the BMI can be calculated based on the weight and height of an person using the following formula: weight / (heigth * heigth). If a person's BMI is less than 18.5 and they are male, they are classified as severely underweight. If the              BMI is less than 18.5 and the person is female, they are classified as underweight. When the BMI is between 18.5 and 25 (excluding 25) and the person is male, the classification is underweight, whereas a female with the same BMI range is considered to have a            normal weight. For BMIs between 25 and 30 (inclusive), males are classified as normal, while females fall into the overweight category. If the BMI is greater than 30, both males and females are classified as obese.
+        -  The description decide the BMI can be calculated based on the weight and height of an person using the following formula: weight / (heigth * heigth). If a person's BMI is less than 18.5 and they are male, they are classified as severely underweight. If the              BMI is less than 18.5 and the person is female, they are classified as underweight. When the BMI is between 18.5 and 25 (excluding 25) and the person is male, the classification is underweight, whereas a female with the same BMI range is considered to have             normal weight. For BMIs between 25 and 30 (inclusive), males are classified as normal, while females fall into the overweight category. If the BMI is greater than 30, both males and females are classified as obese.
           
    -    Q2: What is the-BMI level of a male of 1.76m weighing 68 kgs?
          - BMI = 68 / (1,76 * 1,76) = 21,95 --> **normal**
@@ -46,6 +46,11 @@ The data is as follows:
          | > 30                    | male       |  any   | Obese                   |
          | > 30                    | female     |  any   | Obese                   |
 
+         - Q6.1: Does the table contain the correct input variables?
+         - Q6.2: Does the table contain the correct output variable?
+         - Q6.3: Does the table contain at least one correct rule?
+         - Q6.4: Is the table a correct decision table for the problem?
+           
    -    Q7: Make the rules matually exclusive.
          | BMI-Scale               | Gender     | Length | Category                |
          |:------------------------|:----------:|:------:|-------------------------:|
@@ -78,6 +83,11 @@ Together they decided that if someone has allergies and that no one has  time to
    - Q5: What are the relevant values of the numerical variables?
 
    - Q6: Could you generate a DMN decision table for this description? Make sure the table can be read horizontally: the column headers contain the inputs and output.
+ 
+         - Q6.1: Does the table contain the correct input variables?
+         - Q6.2: Does the table contain the correct output variable?
+         - Q6.3: Does the table contain at least one correct rule?
+         - Q6.4: Is the table a correct decision table for the problem?
 
    - Q7: Make the rules mutually exclusive.
 
@@ -100,6 +110,11 @@ Together they decided that if someone has allergies and that no one has  time to
    - Q5: What are the relevant values of the numerical variables?
 
    - Q6: Could you generate a DMN decision table for this description? Make sure the table can be read horizontally: the column headers contain the inputs and output.
+ 
+         - Q6.1: Does the table contain the correct input variables?
+         - Q6.2: Does the table contain the correct output variable?
+         - Q6.3: Does the table contain at least one correct rule?
+         - Q6.4: Is the table a correct decision table for the problem?
 
    - Q7: Make the rules mutually exclusive.
 
@@ -123,6 +138,11 @@ If an employee has at least 15 but less than 30 years of service, 2 extra days a
    - Q5: What are the relevant values of the numerical variables?
 
    - Q6: Could you generate a DMN decision table for this description? Make sure the table can be read horizontally: the column headers contain the inputs and output.
+ 
+         - Q6.1: Does the table contain the correct input variables?
+         - Q6.2: Does the table contain the correct output variable?
+         - Q6.3: Does the table contain at least one correct rule?
+         - Q6.4: Is the table a correct decision table for the problem?
 
    - Q7: Make the rules mutually exclusive.
 
@@ -143,6 +163,11 @@ If an employee has at least 15 but less than 30 years of service, 2 extra days a
    - Q5: What are the relevant values of the numerical variables?
 
    - Q6: Could you generate a DMN decision table for this description? Make sure the table can be read horizontally: the column headers contain the inputs and output.
+ 
+         - Q6.1: Does the table contain the correct input variables?
+         - Q6.2: Does the table contain the correct output variable?
+         - Q6.3: Does the table contain at least one correct rule?
+         - Q6.4: Is the table a correct decision table for the problem?
 
    - Q7: Make the rules mutually exclusive.
 
@@ -163,6 +188,11 @@ If an employee has at least 15 but less than 30 years of service, 2 extra days a
    - Q5: What are the relevant values of the numerical variables?
 
    - Q6: Could you generate a DMN decision table for this description? Make sure the table can be read horizontally: the column headers contain the inputs and output.
+ 
+         - Q6.1: Does the table contain the correct input variables?
+         - Q6.2: Does the table contain the correct output variable?
+         - Q6.3: Does the table contain at least one correct rule?
+         - Q6.4: Is the table a correct decision table for the problem?
 
    - Q7: Make the rules mutually exclusive.
 
