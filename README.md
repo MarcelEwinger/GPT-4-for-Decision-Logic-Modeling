@@ -73,29 +73,64 @@ The data is as follows:
 Together they decided that if someone has **allergies** and that no one has  **time** to take care of a pet then that no pet is adopted. The couple also decided to not take in an animal if they don't have kids, don't have time even if they don't have allergies. However, if they have a an average amount of time available or a lot and even if they have allergies then they want to take in a fish. The couple decides that they also want a fish if they have kids, no allergies even if they don't have a lot of time available. The couple decides to take in a cat or a dog only if no one has allergies. A dog is taken in if they have a garden, kids and they have a lot of time. The dog is also adopted if they have a garden, no kids and have normal or a lot of time to spare. In all the remaining cases, the couple decides they want to have a cat.
 
    - Q1: What does this description decide?
+      - This description outlines the decision-making process for determining which pet (fish, dog, cat, or none) a family wants to adopt, based on the variables allergies, time, children, and garden.
 
    - Q2: What pet should a couple with allergies choose if they have a lot of time to take care of it?
+      - Fish 
 
    - Q3: What are the variables that influence this decision?
+      - Allergies
+      - Time Available
+      - Kids
+      - Garden
 
    - Q4: For each input and output, give me an overview of their data type and their possible values.
+      - Input:
+         - Allergies: **Boolean** --> Yes or No
+         - Time Available: **String** --> None, Average, Little or Lot
+         - Kid: **Boolean** --> No or Yes
+         - Garden: **Boolean** --> No or Yes
+      - Output
+         - Pet Adopted: **String** --> No Pet, Fish, Dog or Cat  
 
    - Q5: What are the relevant values of the numerical variables?
 
    - Q6: Could you generate a DMN decision table for this description? Make sure the table can be read horizontally: the column headers contain the inputs and output.
- 
+   | **Allergies** | **Time Available**     | **Kids** | **Garden** | **Pet Adopted** |
+   |---------------|------------------------|----------|------------|------------------|
+   | Y             | None                   | any      | any        | N                |
+   | N             | None                   | N        | any        | N                |
+   | Y             | Average or Lot         | any      | any        | Fish             |
+   | N             | None                   | Y        | any        | Fish             |
+   | N             | Lot                    | Y        | Y          | Dog              |
+   | N             | Average                | N        | Y          | Dog              |
+   | N             | Lot                    | N        | Y          | Dog              |
+   | N             | Average                | N        | N          | Cat              |
+   | N             | Lot                    | N        | N          | Cat              |
+   | N             | Average                | N        | N          | Cat              |
+   | N             | Average                | Y        | N          | Cat              |
+     
          - Q6.1: Does the table contain the correct input variables?
          - Q6.2: Does the table contain the correct output variable?
          - Q6.3: Does the table contain at least one correct rule?
          - Q6.4: Is the table a correct decision table for the problem?
 
    - Q7: Make the rules mutually exclusive.
+     | **Allergies** | **Time Available** | **Kids** | **Garden** | **Pet Adopted** |
+     |---------------|--------------------|----------|------------|------------------|
+     | Yes           | None               | Any      | Any        | No Pet           |
+     | Yes           | Average or Lot     | Any      | Any        | Fish             |
+     | No            | None               | No       | Any        | No Pet           |
+     | No            | None               | Yes      | Any        | Fish             |
+     | No            | Little             | Any      | Any        | Fish             |
+     | No            | Average or Lot     | Yes      | Yes        | Dog              |
+     | No            | Average or Lot     | No       | Yes        | Dog              |
+     | No            | Average or Lot     | Any      | No         | Cat              |
 
    - Q8: Is this table complete? (I.e., is there an applicable rule for each set of inputs?) If it is incomplete, can you find an example for which no rule would be applicable?
 
-   - Q9: According to your table, answer the following question: What is the pet going to be of a couple without allergies and average amount of time, no kids and with a garden?"),
-           ('driver?
-
+   - Q9: According to your table, answer the following question: What is the pet going to be of a couple without allergies and average amount of time, no kids and with a garden?")
+      -  Dog
 
 * A person is eligible to get their driver's license based on their **age**, on being a **national resident** and if they have sufficient **practical skills**. The practical skills are evaluated based on the theoretical knowledge, driving skills, maneuvring skills and anticipation capabilities. Each of these aspects are evaluated with 'Excellent', 'Good' or 'Fail'. A person only passes the practical skills if they have no fails on any of the 4 aspects making up the practical skills. A person can only receive their driver's license if they are 18 or more, are a national resident and passed their practical skills test.
 
