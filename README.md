@@ -97,9 +97,10 @@ Together they decided that if someone has allergies and that no one has  time to
            ('driver?
 
 
-* A person is eligible to get their driver's license based on their age, on being a national resident and if they have sufficient practical skills. The practical skills are evaluated based on the theoretical knowledge, driving skills, maneuvring skills and anticipation capabilities. Each of these aspects are evaluated with 'Excellent', 'Good' or 'Fail'. A person only passes the practical skills if they have no fails on any of the 4 aspects making up the practical skills. A person can only receive their driver's license if they are 18 or more, are a national resident and passed their practical skills test.
+* A person is eligible to get their driver's license based on their **age**, on being a **national resident** and if they have sufficient **practical skills**. The practical skills are evaluated based on the theoretical knowledge, driving skills, maneuvring skills and anticipation capabilities. Each of these aspects are evaluated with 'Excellent', 'Good' or 'Fail'. A person only passes the practical skills if they have no fails on any of the 4 aspects making up the practical skills. A person can only receive their driver's license if they are 18 or more, are a national resident and passed their practical skills test.
 
    - Q1: What does this description decide?
+      - Diese Beschreibung entscheidet ob eine Personen den Führerschein bekommen wird oder nicht. Die Entscheidung hängt von drei Haupunkten ab, nämlich dem Alter ( 
 
    - Q2: Is a 23 year old person who did not pass their practical test and is a national resident eligible for a driver\'s license?
 
