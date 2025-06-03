@@ -9,7 +9,7 @@ import openai
 import time
 
 client = OpenAI(
-  api_key="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"
+  api_key=""
 )
 
 def query_openai(prompt, temp):
