@@ -154,36 +154,12 @@ If an employee has at least 15 but less than 30 years of service, 2 extra days a
 
    - Q1: What does this description decide?
 
-   - Q2: Is a student with good grades and an annual income of 33000 eligible if he has no other scholarships assigned?
-
-   - Q3: What are the variables that influence this decision?
-
-   - Q4: For each input and output, give me an overview of their data type and their possible values.
-
-   - Q5: What are the relevant values of the numerical variables?
-
-   - Q6: Could you generate a DMN decision table for this description? Make sure the table can be read horizontally: the column headers contain the inputs and output.
- 
-         - Q6.1: Does the table contain the correct input variables?
-         - Q6.2: Does the table contain the correct output variable?
-         - Q6.3: Does the table contain at least one correct rule?
-         - Q6.4: Is the table a correct decision table for the problem?
-
-   - Q7: Make the rules mutually exclusive.
-
-   - Q8: Is this table complete? (I.e., is there an applicable rule for each set of inputs?) If it is incomplete, can you find an example for which no rule would be applicable?
-
-   - Q9: According to your table, answer the following question: Is a student with excellent grades and an annual income of 88000 eligible if he has no other scholarships assigned?
-     
-* An institution decides to distribute scholarships but can obviously not give them to everyone. Therefore, they decide to distribute them based on the grades, annual income and whether that person already received any scholarships for the year they are applying to. In short a person can only be eligible for a scholarship if the grades are excellent or good, they earn less than 50000 a year and have not received any other scholarship yet. All the other cases make that the person is not eligible for that scholarship.
-
-   - Q1: What does this description decide?
-
    - Q2: What method of transport should I use if I want to go 15kms, have plenty of time and the sun is shining?
 
    - Q3: What are the variables that influence this decision?
 
    - Q4: For each input and output, give me an overview of their data type and their possible values.
+     
 
    - Q5: What are the relevant values of the numerical variables?
 
@@ -199,3 +175,65 @@ If an employee has at least 15 but less than 30 years of service, 2 extra days a
    - Q8: Is this table complete? (I.e., is there an applicable rule for each set of inputs?) If it is incomplete, can you find an example for which no rule would be applicable?
 
    - Q9: According to your table, answer the following question: What method of transport should I use if I want to go 1.8kms, am in a hurry and the weather is freezing?
+     
+* An institution decides to distribute scholarships but can obviously not give them to everyone. Therefore, they decide to distribute them based on the grades, annual income and whether that person already received any scholarships for the year they are applying to. In short a person can only be eligible for a scholarship if the grades are **excellent** or **good**, they earn less than 50.000 a year and have not received any other scholarship yet. All the other cases make that the person is not eligible for that scholarship.
+
+   - Q1: What does this description decide?
+      - It concerns the decision of whether someone receives a scholarship or not. The decision variables include grades, income, and whether a person has already received a scholarship before. A person cannot receive one if their grades are          excellent or good, if they earn less than 50,000, and if they have not received a scholarship before.
+
+   - Q2: Is a student with good grades and an annual income of 33000 eligible if he has no other scholarships assigned.
+     - Yes he is, because the grade is good, the income is less than 50000 a year and he has no other scholarship
+
+   - Q3: What are the variables that influence this decision?
+     - Grades, income and scholarship status 
+
+   - Q4: For each input and output, give me an overview of their data type and their possible values.
+      - Inputs:
+            - Grades: **String**
+            - Annual Income: **Integer** --> posetive
+            - Scholarship Received : **Boolean** --> yes or no    
+         - Outputs: Scholarship Status : **Boolean**; **yes** or **no**
+
+   - Q5: What are the relevant values of the numerical variables?
+      - For the income any posetive Integer --> 0-50.000
+
+   - Q6: Could you generate a DMN decision table for this description? Make sure the table can be read horizontally: the column headers contain the inputs and output.
+        | Grade       | Annual Income (< 50,000?) |  Scholarship Received | Scholarship Status |
+        |-------------|---------------------------|-----------------------|--------------------|
+        | Excellent   | Yes                       | No                    | Yes                |
+        | Good        | Yes                       | No                    | Yes                |
+        | Excellent   | Yes                       | Yes                   | No                 |
+        | Good        | Yes                       | Yes                   | No                 |
+        | Excellent   | No                        | No                    | No                 |
+        | Good        | No                        | No                    | No                 |
+        | Excellent   | No                        | Yes                   | No                 |
+        | Good        | No                        | Yes                   | No                 |
+        | Average     | yes                       | yes                   | No                 |
+        | Average     | yes                       | no                    | No                 |
+        | Average     | no                        | yes                   | No                 |
+        | Average     | yes                       | no                    | No                 |
+       
+         - Q6.1: Does the table contain the correct input variables?
+         - Q6.2: Does the table contain the correct output variable?
+         - Q6.3: Does the table contain at least one correct rule?
+         - Q6.4: Is the table a correct decision table for the problem?
+
+   - Q7: Make the rules mutually exclusive.
+       | Grade       | Annual Income (< 50,000?) |  Scholarship Received | Scholarship Status |
+        |-------------|---------------------------|-----------------------|--------------------|
+        | Excellent   | Yes                       | No                    | Yes                |
+        | Good        | Yes                       | No                    | Yes                |
+        | Excellent   | Yes                       | Yes                   | No                 |
+        | Good        | Yes                       | Yes                   | No                 |
+        | Excellent   | No                        | No                    | No                 |
+        | Good        | No                        | No                    | No                 |
+        | Excellent   | No                        | Yes                   | No                 |
+        | Good        | No                        | Yes                   | No                 |
+        | Average     | any                       | any                   | No                 |
+  
+
+   - Q8: Is this table complete? (I.e., is there an applicable rule for each set of inputs?) If it is incomplete, can you find an example for which no rule would be applicable?
+      - No this table is complete
+
+   - Q9: According to your table, answer the following question: Is a student with excellent grades and an annual income of 88000 eligible if he has no other scholarships assigned?
+      - no they are not, because they earn too much  
