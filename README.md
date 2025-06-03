@@ -166,6 +166,7 @@ Together they decided that if someone has **allergies** and that no one has  **t
       - Age: posetiv Integer >= 18
 
    - Q6: Could you generate a DMN decision table for this description? Make sure the table can be read horizontally: the column headers contain the inputs and output.
+     
         | Age (years) | National Resident | Theoretical Knowledge | Driving Skills    | Maneuvering Skills | Anticipation      | Passed Practical Skills | Eligible for License |
         | ----------- | ----------------- | --------------------- | ----------------- | ------------------ | ----------------- | ----------------------- | -------------------- |
         | < 18        | Any               | Any                   | Any               | Any                | Any               | -                       | No                   |
@@ -191,7 +192,6 @@ Together they decided that if someone has **allergies** and that no one has  **t
        | ≥ 18          | Yes               | Good or Excellent     | Good or Excellent | Fail               | Any               | No                   |
        | ≥ 18          | Yes               | Good or Excellent     | Good or Excellent | Good or Excellent  | Fail              | No                   |
        | ≥ 18          | Yes               | Good or Excellent     | Good or Excellent | Good or Excellent  | Good or Excellent | Yes                  |
-
 
    - Q8: Is this table complete? (I.e., is there an applicable rule for each set of inputs?) If it is incomplete, can you find an example for which no rule would be applicable?
       - Yes this table is complete  
