@@ -100,17 +100,45 @@ Together they decided that if someone has allergies and that no one has  time to
 * A person is eligible to get their driver's license based on their **age**, on being a **national resident** and if they have sufficient **practical skills**. The practical skills are evaluated based on the theoretical knowledge, driving skills, maneuvring skills and anticipation capabilities. Each of these aspects are evaluated with 'Excellent', 'Good' or 'Fail'. A person only passes the practical skills if they have no fails on any of the 4 aspects making up the practical skills. A person can only receive their driver's license if they are 18 or more, are a national resident and passed their practical skills test.
 
    - Q1: What does this description decide?
-      - Diese Beschreibung entscheidet ob eine Personen den Führerschein bekommen wird oder nicht. Die Entscheidung hängt von drei Haupunkten ab, nämlich dem Alter ( 
+      - This description determines whether a person will receive a driver's license or not. The decision depends on three main points: age (>= 18), whether the person is a national resident, and practical driving skills, which are each assessed separately in theoretical knowledge, driving skills, maneuvering skills, and anticipation capabilities. Each of these four parts must be passed positively.
 
    - Q2: Is a 23 year old person who did not pass their practical test and is a national resident eligible for a driver\'s license?
+      - No he isn't, because he did not pass the practical test.    
 
    - Q3: What are the variables that influence this decision?
+      - Age
+      - National resident status
+      - practical skills
+         - theoretical knowledge
+         - driving skills
+         - maneuvring skills
+         - anticipation capabilities
 
    - Q4: For each input and output, give me an overview of their data type and their possible values.
-
+      - Input:
+         - Age: **Integer** --> any posetiv value
+         - National resident status: **Boolean** --> Yes or No
+         - practical skills: **Boolean** --> Yes or No
+            - theoretical knowledge: **String*** --> 'Excellent', 'Good' or 'Fail'
+            - driving skills: **String*** --> 'Excellent', 'Good' or 'Fail'
+            - maneuvring skills: **String*** --> 'Excellent', 'Good' or 'Fail'
+            - anticipation capabilities **String*** --> 'Excellent', 'Good' or 'Fail'
+      - Output:
+         - eligible for driver livesen: **Boolean** --> Yes or No
+ 
    - Q5: What are the relevant values of the numerical variables?
+      - Age: posetiv Integer >= 18
 
    - Q6: Could you generate a DMN decision table for this description? Make sure the table can be read horizontally: the column headers contain the inputs and output.
+        | Age (years) | National Resident | Theoretical Knowledge | Driving Skills    | Maneuvering Skills | Anticipation      | Passed Practical Skills | Eligible for License |
+        | ----------- | ----------------- | --------------------- | ----------------- | ------------------ | ----------------- | ----------------------- | -------------------- |
+        | < 18        | Any               | Any                   | Any               | Any                | Any               | -                       | No                   |
+        | ≥ 18        | No                | Any                   | Any               | Any                | Any               | -                       | No                   |
+        | ≥ 18        | Yes               | Fail                  | Any               | Any                | Any               | No                      | No                   |
+        | ≥ 18        | Yes               | Any                   | Fail              | Any                | Any               | No                      | No                   |
+        | ≥ 18        | Yes               | Any                   | Any               | Fail               | Any               | No                      | No                   |
+        | ≥ 18        | Yes               | Any                   | Any               | Any                | Fail              | No                      | No                   |
+        | ≥ 18        | Yes               | Good or Excellent     | Good or Excellent | Good or Excellent  | Good or Excellent | Yes                     | Yes                  |
  
          - Q6.1: Does the table contain the correct input variables?
          - Q6.2: Does the table contain the correct output variable?
@@ -118,10 +146,22 @@ Together they decided that if someone has allergies and that no one has  time to
          - Q6.4: Is the table a correct decision table for the problem?
 
    - Q7: Make the rules mutually exclusive.
+       | Age Condition | National Resident | Theoretical Knowledge | Driving Skills    | Maneuvering Skills | Anticipation      | Eligible for License |
+       | ------------- | ----------------- | --------------------- | ----------------- | ------------------ | ----------------- | -------------------- |
+       | < 18          | Any               | Any                   | Any               | Any                | Any               | No                   |
+       | ≥ 18          | No                | Any                   | Any               | Any                | Any               | No                   |
+       | ≥ 18          | Yes               | Fail                  | Any               | Any                | Any               | No                   |
+       | ≥ 18          | Yes               | Good or Excellent     | Fail              | Any                | Any               | No                   |
+       | ≥ 18          | Yes               | Good or Excellent     | Good or Excellent | Fail               | Any               | No                   |
+       | ≥ 18          | Yes               | Good or Excellent     | Good or Excellent | Good or Excellent  | Fail              | No                   |
+       | ≥ 18          | Yes               | Good or Excellent     | Good or Excellent | Good or Excellent  | Good or Excellent | Yes                  |
+
 
    - Q8: Is this table complete? (I.e., is there an applicable rule for each set of inputs?) If it is incomplete, can you find an example for which no rule would be applicable?
+      - Yes this table is complete  
 
    - Q9: According to your table, answer the following question: Is a 32 year old person that failed the theoretical test and is a national resident eligible for a driver\'s licence?
+      - No the person is not  eligible for a driver\'s licence.
 
 * Every employee receives at least 22 days. Additional days are provided according to the following criteria:
 Only employees younger than 18 or at least 60 years, or employees with at least 30 years of service will receive 5 extra days.
