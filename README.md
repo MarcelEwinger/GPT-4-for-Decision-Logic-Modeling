@@ -96,6 +96,7 @@ Together they decided that if someone has **allergies** and that no one has  **t
    - Q5: What are the relevant values of the numerical variables?
 
    - Q6: Could you generate a DMN decision table for this description? Make sure the table can be read horizontally: the column headers contain the inputs and output.
+     
    | **Allergies** | **Time Available**     | **Kids** | **Garden** | **Pet Adopted** |
    |---------------|------------------------|----------|------------|------------------|
    | Y             | None                   | any      | any        | N                |
