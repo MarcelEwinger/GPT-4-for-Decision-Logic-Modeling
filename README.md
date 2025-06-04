@@ -19,7 +19,7 @@ The data is as follows:
         -  The description decide the BMI can be calculated based on the weight and height of an person using the following formula: weight / (heigth * heigth). If a person's BMI is less than 18.5 and they are male, they are classified as severely underweight. If the              BMI is less than 18.5 and the person is female, they are classified as underweight. When the BMI is between 18.5 and 25 (excluding 25) and the person is male, the classification is underweight, whereas a female with the same BMI range is considered to have             normal weight. For BMIs between 25 and 30 (inclusive), males are classified as normal, while females fall into the overweight category. If the BMI is greater than 30, both males and females are classified as obese.
           
    -    Q2: What is the-BMI level of a male of 1.76m weighing 68 kgs?
-         - BMI = 68 / (1,76 * 1,76) = 21,95 --> **normal**
+         - BMI = 68 / (1,76 * 1,76) = 21,95 --> **underweight**
            
    -    Q3: What are the variables that influence this decisin?
          - The variables that influences the decision are: Weight in kg, Height in meters and Gender 
