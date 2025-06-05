@@ -1,5 +1,5 @@
 """
-Program for querying GPT-3 through the OpenAI API.
+Program for querying GPT-4o mini through the OpenAI API.
 For each description (prompt1-6), it goes through the entire conversation three
 times at four different temperature values, and saves the complete output.
 """
